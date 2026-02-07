@@ -221,34 +221,45 @@
         </div>
     </footer>
     <script src="antigravity-bg.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
-    <script type="module">
-        import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/index.js';
-        createChat({
-            webhookUrl: 'https://agente-n8n.qy9sqv.easypanel.host/webhook/chat',
-            mode: 'window',
-            chatInputKey: 'chatInput',
-            chatSessionKey: 'sessionId',
-            metadata: {},
-            showWelcomeScreen: false,
-            defaultOpen: false,
-            initialMessages: [
-                'Olá! 👋 Sou a IA da AI Connect. Como posso ajudar você hoje?'
-            ],
-            i18n: {
-                en: {
-                    title: 'AI Connect Assistant',
-                    subtitle: 'Especialista em IA',
-                    footer: '',
-                    getStarted: 'Iniciar conversa',
-                    inputPlaceholder: 'Digite sua mensagem...',
-                },
-            },
-            style: {
-                accentColor: '#7c3aed',
-                background: '#13131f',
-                color: '#ffffff',
-            },
+    <script>
+        document.querySelector('.contact-form').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = 'Enviando...';
+            submitBtn.disabled = true;
+
+            const formData = {
+                nome: this.querySelector('input[placeholder="Seu Nome"]').value,
+                empresa: this.querySelector('input[placeholder="Nome da Empresa"]').value,
+                whatsapp: this.querySelector('input[placeholder="Seu WhatsApp/Telefone"]').value,
+                email: this.querySelector('input[placeholder="Seu E-mail Corporativo"]').value,
+                mensagem: this.querySelector('textarea').value
+            };
+
+            try {
+                const response = await fetch('https://agente-n8n.qy9sqv.easypanel.host/webhook/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    alert('Obrigado! Recebemos sua mensagem e entraremos em contato em breve.');
+                    this.reset();
+                } else {
+                    throw new Error('Erro no envio');
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Ocorreu um erro ao enviar. Por favor, tente novamente ou nos chame no WhatsApp.');
+            } finally {
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+            }
         });
     </script>
 </body>
