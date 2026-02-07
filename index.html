@@ -221,13 +221,11 @@
         </div>
     </footer>
     <script src="antigravity-bg.js"></script>
-    <div id="n8n-chat"></div>
     <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
     <script type="module">
         import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/index.js';
         createChat({
             webhookUrl: 'https://agente-n8n.qy9sqv.easypanel.host/webhook/chat',
-            target: '#n8n-chat',
             mode: 'window',
             chatInputKey: 'chatInput',
             chatSessionKey: 'sessionId',

@@ -803,12 +803,6 @@ img {
     background-color: #22c55e;
 }
 
-#n8n-chat {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 10000;
-}
 
 /* === Footer === */
 .footer {
