@@ -354,17 +354,77 @@ img {
     /* Orbiting positioning - Counter rotate to stay upright */
     animation: counter-orbit 20s linear infinite;
 
-    /* Adjusted positions to be evenly spaced on the "circle" */
-    top: 10%;
-    left: 10%;
+    /* Card 1: Sites Velozes (Top Left) */
+    top: 20%;
+    left: 0%;
 }
 
+/* Orbit positions for new cards - Wide Star Pattern */
 .glass-2 {
-    /* Opposite side position */
-    top: 65%;
+    /* Card 2: Automação Total (Top Right) */
+    top: 5%;
     left: auto;
-    right: 10%;
-    /* No generic delay, sync with counter-orbit */
+    right: 15%;
+}
+
+.glass-3 {
+    /* Card 3: Dashboard (Middle Right) */
+    top: 45%;
+    left: auto;
+    right: -5%;
+}
+
+.glass-4 {
+    /* Card 4: WhatsApp (Bottom Center) */
+    top: 85%;
+    left: 40%;
+    right: auto;
+}
+
+.glass-5 {
+    /* Card 5: Agentes (Middle/Bottom Left) */
+    top: 70%;
+    left: 5%;
+}
+
+/* Scroll Reveal Animations */
+.reveal {
+    position: relative;
+    transform: translateY(50px);
+    opacity: 0;
+    transition: 1s all ease;
+}
+
+.reveal.active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Fade Left/Right */
+.fade-left {
+    transform: translateX(-50px);
+}
+
+.fade-right {
+    transform: translateX(50px);
+}
+
+.fade-left.active,
+.fade-right.active {
+    transform: translateX(0);
+}
+
+/* Delays */
+.delay-1 {
+    transition-delay: 0.1s;
+}
+
+.delay-2 {
+    transition-delay: 0.2s;
+}
+
+.delay-3 {
+    transition-delay: 0.3s;
 }
 
 /* Typing Effect */
@@ -688,10 +748,10 @@ img {
 
 /* Contact Grid & Map */
 .contact-location-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    justify-content: center;
     gap: 40px;
-    align-items: stretch;
+    align-items: center;
     margin-top: -40px;
     margin-bottom: 60px;
     position: relative;
