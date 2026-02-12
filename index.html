@@ -237,10 +237,18 @@
             submitBtn.innerText = 'Enviando...';
             submitBtn.disabled = true;
 
+            let phone = this.querySelector('input[placeholder="Seu WhatsApp/Telefone"]').value;
+            // Remove tudo que não é número
+            phone = phone.replace(/\D/g, '');
+            // Adiciona 55 se tiver 10 ou 11 dígitos (DDD + Número)
+            if (phone.length >= 10 && phone.length <= 11) {
+                phone = '55' + phone;
+            }
+
             const formData = {
                 nome: this.querySelector('input[placeholder="Seu Nome"]').value,
                 nome_empresa: this.querySelector('input[placeholder="Nome da Empresa"]').value,
-                telefone: this.querySelector('input[placeholder="Seu WhatsApp/Telefone"]').value,
+                telefone: phone,
                 email: this.querySelector('input[placeholder="Seu E-mail Corporativo"]').value,
                 como_posso_te_ajudar: this.querySelector('textarea').value
             };
