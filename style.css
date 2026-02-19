@@ -308,8 +308,7 @@ img {
     width: 100%;
     max-width: 500px;
     height: 450px;
-    /* Circular Orbit for the entire group */
-    animation: orbit 20s linear infinite;
+    /* Removed orbit animation to prevent overlapping */
     transform-origin: center center;
 }
 
@@ -351,8 +350,8 @@ img {
     color: var(--text-dark);
     border: 1px solid rgba(255, 255, 255, 0.5);
 
-    /* Orbiting positioning - Counter rotate to stay upright */
-    animation: counter-orbit 20s linear infinite;
+    /* Floating animation instead of orbit */
+    animation: float 6s ease-in-out infinite;
 
     /* Card 1: Sites Velozes (Top Left) */
     top: 20%;
@@ -365,6 +364,7 @@ img {
     top: 5%;
     left: auto;
     right: 15%;
+    animation-delay: 1s;
 }
 
 .glass-3 {
@@ -372,6 +372,7 @@ img {
     top: 45%;
     left: auto;
     right: -5%;
+    animation-delay: 2s;
 }
 
 .glass-4 {
@@ -379,12 +380,14 @@ img {
     top: 85%;
     left: 40%;
     right: auto;
+    animation-delay: 3s;
 }
 
 .glass-5 {
     /* Card 5: Agentes (Middle/Bottom Left) */
     top: 70%;
     left: 5%;
+    animation-delay: 4s;
 }
 
 /* Scroll Reveal Animations */
@@ -1007,5 +1010,162 @@ img {
 
     .footer-container {
         grid-template-columns: 1fr;
+    }
+}
+
+/* === Mobile Menu Styles === */
+@media (max-width: 768px) {
+
+    /* Header Adjustments */
+    .header-container {
+        position: relative;
+    }
+
+    /* Mobile Navigation */
+    .nav-list {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: var(--header-height);
+        right: -100%;
+        /* Hidden by default */
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        height: calc(100vh - var(--header-height));
+        padding: 40px 24px;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        align-items: center;
+        gap: 32px;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        opacity: 0;
+        visibility: hidden;
+        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-list.active {
+        right: 0;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-list li {
+        width: 100%;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: 0.4s;
+    }
+
+    .nav-list.active li {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Staggered Animation for list items */
+    .nav-list.active li:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+
+    .nav-list.active li:nth-child(2) {
+        transition-delay: 0.2s;
+    }
+
+    .nav-list.active li:nth-child(3) {
+        transition-delay: 0.3s;
+    }
+
+    .nav-list.active li:nth-child(4) {
+        transition-delay: 0.4s;
+    }
+
+    .nav-list a {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        padding: 12px;
+        display: block;
+    }
+
+    .nav-list a:hover {
+        color: var(--primary-blue);
+    }
+
+    /* CTA Button inside Menu (optional, if we want to move it inside) */
+    /* For now, we hide the header primary button on mobile as per previous rules */
+
+    /* Mobile Menu Button Animation */
+    .mobile-menu-btn {
+        z-index: 1001;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.3s;
+    }
+
+    .mobile-menu-btn.active i {
+        transform: rotate(180deg);
+    }
+
+    .mobile-menu-btn.active .fa-bars:before {
+        content: "\f00d";
+        /* Change to X icon */
+    }
+
+    /* Padding Adjustments for Mobile */
+    .hero {
+        padding-top: calc(var(--header-height) + 40px);
+        padding-bottom: 60px;
+    }
+
+    .solutions,
+    .about,
+    .cta-section {
+        padding: 60px 0;
+    }
+
+    .section-header {
+        margin-bottom: 40px;
+    }
+
+    .section-header h2 {
+        font-size: 2rem;
+    }
+
+    .about-container {
+        gap: 40px;
+    }
+
+    .cta-box {
+        padding: 40px 24px;
+        margin-bottom: 40px;
+    }
+
+    .cta-box h2 {
+        font-size: 1.75rem;
+    }
+
+    .cta-box p {
+        font-size: 1rem;
+        margin-bottom: 32px;
+    }
+
+    /* Adjust contact grid overlapping */
+    .contact-location-grid {
+        margin-top: 0;
+        margin-bottom: 40px;
+        flex-direction: column;
+    }
+
+    .contact-info-card {
+        padding: 24px;
+        width: 100%;
+    }
+
+    .map-wrapper {
+        min-height: 250px;
+        width: 100%;
     }
 }
