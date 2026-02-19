@@ -11,10 +11,17 @@
 
     --text-dark: #0f172a;
     /* Slate 900 */
-    --text-body: #475569;
-    /* Slate 600 */
+    --text-body: #64748b;
     --text-light: #94a3b8;
     /* Slate 400 */
+
+    /* Circle Customization */
+    --circle-1-size: 450px;
+    --circle-1-color: #bfdbfe;
+    /* Blue 200 */
+    --circle-2-size: 380px;
+    --circle-2-color: #cffafe;
+    /* Cyan 100 */
 
     --white: #ffffff;
     --background-site: #ffffff;
@@ -238,22 +245,32 @@ img {
 
 .hero-content {
     flex: 1;
+    z-index: 2;
+    /* Ensure text is above shapes */
+    max-width: 100%;
+    /* Allow full width */
 }
 
+/* ... existing styles ... */
+
 .hero-content h1 {
-    font-size: 3.5rem;
+    font-size: clamp(2rem, 4vw, 4.5rem);
+    /* Reduced size further */
+    /* Responsive scaling */
     font-weight: 800;
     color: var(--text-dark);
     margin-bottom: 24px;
-    line-height: 1.15;
+    line-height: 1.1;
     letter-spacing: -0.03em;
+    /* white-space: nowrap; Removed to prevent cutting off on very small screens */
 }
 
 .hero-content p {
     font-size: 1.25rem;
     color: var(--text-body);
     margin-bottom: 40px;
-    max-width: 540px;
+    max-width: 800px;
+    /* Increased to match wider layout */
     line-height: 1.6;
 }
 
@@ -263,10 +280,14 @@ img {
 }
 
 .hero-image {
-    flex: 1;
-    position: relative;
-    display: flex;
-    justify-content: center;
+    position: absolute;
+    right: -10%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    opacity: 0.6;
+    /* Slight fade since it's background now */
+    pointer-events: none;
 }
 
 /* Animated Circles/Glass Cards in Hero */
@@ -321,17 +342,17 @@ img {
 }
 
 .circle-1 {
-    width: 300px;
-    height: 300px;
-    background: #bfdbfe;
+    width: var(--circle-1-size);
+    height: var(--circle-1-size);
+    background: var(--circle-1-color);
     top: 50px;
     left: 20px;
 }
 
 .circle-2 {
-    width: 250px;
-    height: 250px;
-    background: #cffafe;
+    width: var(--circle-2-size);
+    height: var(--circle-2-size);
+    background: var(--circle-2-color);
     bottom: 50px;
     right: 20px;
 }

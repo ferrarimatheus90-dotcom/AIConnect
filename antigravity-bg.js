@@ -8,12 +8,13 @@
     const config = {
         particleCount: window.innerWidth < 768 ? 60 : 130, // Quantidade de pontos
         particleColor: '30, 41, 59', // Slate 800 (Cinza escuro/Preto para os pontos)
-        particleSize: 2.5, // Tamanho dos pontos
+        particleSize: 30, // Tamanho aumentado significativamente
+        particleColor: '30, 41, 59', // Slate 800
 
         connectionDistance: 140, // Distância máxima para conectar
         connectionColor: '51, 65, 85', // Slate 700 (Cinza azulado para as linhas)
 
-        bgGradient: ['#ffffff', '#f1f5f9'], // Fundo Branco -> Cinza muito claro
+        bgGradient: ['#ffffff', '#0080ffff'], // Fundo Branco -> Cinza muito claro
 
         mouseInteractionRadius: 250,
         speed: 0.2 // Velocidade moderada (Nem muito rápido, nem parado)
