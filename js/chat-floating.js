@@ -44,8 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.ok) {
-                    const jsonResponse = await response.json();
-                    return jsonResponse.output || jsonResponse.text || "Desculpe, não entendi.";
+                    const textResponse = await response.text();
+                    try {
+                        const jsonResponse = JSON.parse(textResponse);
+                        return jsonResponse.output || jsonResponse.text || jsonResponse.message || textResponse || "Desculpe, não entendi.";
+                    } catch (e) {
+                        // Fallback to raw text if not valid JSON
+                        return textResponse || "Desculpe, não entendi.";
+                    }
                 } else {
                     console.error(`HTTP Error: ${response.status}`);
                     return "Erro de conexão com o servidor.";
@@ -66,8 +72,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function addMessage(text, sender = 'system') {
         const msgDiv = document.createElement('div');
         msgDiv.classList.add('message', sender);
-        // Security note: innerHTML used for bold formatting, ensure backend sanitizes if needed
-        msgDiv.innerHTML = text;
+
+        // Basic parser to render line breaks and bold tags safely
+        let formattedText = text
+            .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>') // Convert **bold** to <b>bold</b>
+            .replace(/###\s?/g, '')                 // Remove markdown headers
+            .replace(/\n/g, '<br>');                // Convert line breaks to HTML breaks
+
+        msgDiv.innerHTML = formattedText;
         chatBody.appendChild(msgDiv);
         scrollToBottom();
     }
