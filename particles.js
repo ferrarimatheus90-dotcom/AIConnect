@@ -20,7 +20,7 @@ class Particle {
     draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.5)'; // Dark for light theme
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.15)'; // Softer dark for readability
         ctx.fill();
     }
 
@@ -62,7 +62,7 @@ function connect() {
 
             if (distance < (canvas.width / 7) * (canvas.height / 7)) {
                 opacityValue = 1 - (distance / 20000);
-                ctx.strokeStyle = 'rgba(0, 0, 0,' + opacityValue * 0.1 + ')'; // Dark lines, faint
+                ctx.strokeStyle = 'rgba(0, 0, 0,' + opacityValue * 0.05 + ')'; // Very faint lines
                 ctx.lineWidth = 1;
                 ctx.beginPath();
                 ctx.moveTo(particlesArray[a].x, particlesArray[a].y);

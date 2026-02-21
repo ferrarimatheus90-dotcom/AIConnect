@@ -93,27 +93,16 @@ img {
     padding: 0 24px;
 }
 
-/* Antigravity Background Canvas */
-#antigravity-bg {
+/* Background Animation Canvas */
+#bg-animation {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     z-index: -1;
     pointer-events: none;
     background: transparent;
-
-    /* Requested Components */
-    --fa-style-family-brands: "Font Awesome 6 Brands";
-    --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
-    --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Free";
-    --fa-style-family-classic: "Font Awesome 6 Free";
-    --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Free";
-    font-family: 'Inter', sans-serif;
-    color: var(--text-body);
-    line-height: 1.6;
-    aspect-ratio: auto 974 / 732;
 }
 
 /* === Typography & Components === */

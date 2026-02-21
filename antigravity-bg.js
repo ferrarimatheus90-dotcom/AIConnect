@@ -8,7 +8,7 @@
     const config = {
         particleCount: window.innerWidth < 768 ? 60 : 130, // Quantidade de pontos
         particleColor: '30, 41, 59', // Slate 800 (Cinza escuro/Preto para os pontos)
-        particleSize: 30, // Tamanho aumentado significativamente
+        particleSize: 370, // Tamanho aumentado significativamente
         particleColor: '30, 41, 59', // Slate 800
 
         connectionDistance: 140, // Distância máxima para conectar
