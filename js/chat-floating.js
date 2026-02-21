@@ -40,13 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    // Send message and session ID if needed
                     body: JSON.stringify({ message: message, sessionId: sessionId })
                 });
 
                 if (response.ok) {
                     const jsonResponse = await response.json();
-                    // Basic handling for LangChain output (usually 'output' or 'text')
                     return jsonResponse.output || jsonResponse.text || "Desculpe, não entendi.";
                 } else {
                     console.error(`HTTP Error: ${response.status}`);
